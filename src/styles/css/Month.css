@@ -7,7 +7,7 @@
     background: #68d453; }
   .month.early {
     background: #76abff; }
-  .month:hover {
+  .month:hover, .month.focus {
     border: 2px solid #666;
     margin: 0;
     cursor: pointer; }
@@ -54,7 +54,8 @@
 @keyframes fadeOut {
   to {
     opacity: 0; } }
-.month:hover ~ .paymentPopover {
+.month:hover ~ .paymentPopover,
+.month.focus ~ .paymentPopover {
   display: block;
   animation: fadeIn 0.75s; }
 
