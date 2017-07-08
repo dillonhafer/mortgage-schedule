@@ -30,10 +30,10 @@ class Month extends Component {
 
     return (
       <div className='monthContainer'>
-        <p className={classNames.join(" ")}></p>
+      <p onTouchStart={()=>{}} className={classNames.join(" ")}></p>
         <span className='paymentPopover'>
-        <div style={{textAlign: 'center'}}>{date.format("MMMM YYYY")}</div>
-        {div}
+          <div style={{textAlign: 'center'}}>{date.format("MMMM YYYY")}</div>
+          {div}
         </span>
       </div>
     );

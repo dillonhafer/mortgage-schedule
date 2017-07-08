@@ -3,15 +3,34 @@ import './styles/css/App.css';
 import moment from 'moment';
 import Month from './Month';
 import {numberToCurrency} from './Helpers';
+import logo from './home.svg';
 
 const MORTGAGE_SETTINGS = "mortgage_settings";
+
+function getSettings() {
+  const settings = localStorage.getItem(MORTGAGE_SETTINGS);
+  if (settings === null) {
+    return {};
+  }
+
+  return JSON.parse(window.atob(settings));
+}
+
+function saveSettings(json) {
+  localStorage.setItem(
+    MORTGAGE_SETTINGS,
+    window.btoa(
+      JSON.stringify(json)
+    )
+  );
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
     const currentDate = new Date();
 
-    const savedSettings = JSON.parse(localStorage.getItem(MORTGAGE_SETTINGS));
+    const savedSettings = getSettings();
     const defaultState = {
       loanBalance: 100000,
       currentYear: currentDate.getFullYear(),
@@ -29,10 +48,6 @@ class App extends Component {
     }
   }
 
-  saveState(state) {
-    localStorage.setItem(MORTGAGE_SETTINGS, JSON.stringify(state));
-  }
-
   monthsSinceStart(year, month) {
     const today     = new Date();
     const startDate = moment([year, month, 1]);
@@ -42,7 +57,7 @@ class App extends Component {
 
   setAndUpdateState = (state) => {
     this.setState(state);
-    this.saveState({...this.state, ...state})
+    saveSettings({...this.state, ...state});
   }
 
   handleLoanBalanceChange = (e) => {
@@ -53,10 +68,11 @@ class App extends Component {
   }
 
   handleCurrentBalanceChange = (e) => {
-    if (isNaN(parseInt(e.target.value, 10))) {
-      return alert("Please only input numbers");
+    const value = e.target.value.replace(/^0+/,'');
+    if (isNaN(parseInt(value, 10))) {
+      return this.setAndUpdateState({currentBalance: 0});
     }
-    this.setAndUpdateState({currentBalance: parseInt(e.target.value,10)});
+    this.setAndUpdateState({currentBalance: parseInt(value,10)});
   }
 
   handleInterestRateChange = (e) => {
@@ -141,11 +157,12 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <img src={logo} alt="logo" />
           <h2>Fixed Rate Mortgage Schedule</h2>
         </div>
         <div className="App-intro">
-          <label>Original Balance: <b>{numberToCurrency(loanBalance)}</b></label>
-          <input type="number" pattern="[0-9]*" min="1000" max="500000" step="1000" value={loanBalance} onChange={this.handleLoanBalanceChange} />
+          <label htmlFor="originalBalance">Original Balance: <b>{numberToCurrency(loanBalance)}</b></label>
+          <input id="originalBalance" type="number" pattern="[0-9]*" min="1000" max="500000" step="1000" value={loanBalance} onChange={this.handleLoanBalanceChange} />
 
           <label htmlFor="currentBalance">Current Balance: <b>{numberToCurrency(currentBalance)}</b></label>
           <input id="currentBalance" type="number" pattern="[0-9]*" min="1000" max={loanBalance} step="1000" value={currentBalance} onChange={this.handleCurrentBalanceChange} />
@@ -156,9 +173,9 @@ class App extends Component {
           <label htmlFor="extraMonthlyPayment">Extra Monthly Payment:</label>
           <input id="extraMonthlyPayment" value={extraMonthlyPayment} min="1" type="number" onChange={this.handleExtraMonthlyPaymentChange} />
 
-          <label>Origin Date:</label>
+          <label htmlFor="startMonth">Origin Date:</label>
           <div>
-            <select onChange={this.handleMonthChange} value={startMonth}>
+            <select id="startMonth" onChange={this.handleMonthChange} value={startMonth}>
               {
                 moment.months().map((m, i) => {
                   return <option value={i+1} key={i}>{m}</option>;
@@ -175,9 +192,9 @@ class App extends Component {
             </select>
           </div>
 
-          <label>Loan Term:</label>
+          <label htmlFor="yearTerm">Loan Term:</label>
           <div>
-            <select onChange={this.handleYearTermChange} value={yearTerm}>
+            <select id="yearTerm" onChange={this.handleYearTermChange} value={yearTerm}>
               {
                 [...Array(30).keys()].map((y) => {
                   const year = y + 1;
@@ -201,6 +218,9 @@ class App extends Component {
               })
             }
           </div>
+        </div>
+        <div className="attribution-link">
+          <a href="https://www.vexels.com/vectors/preview/135263/web-home-flat-sign"> Web home flat sign </a> | designed by Vexels
         </div>
       </div>
     );

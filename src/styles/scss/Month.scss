@@ -1,6 +1,8 @@
+$earlyColor: #76abff;
+
 .month {
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   margin: 2px;
   background: #CCC;
 
@@ -8,13 +10,17 @@
     background: rgb(104, 212, 83);
   }
   &.early {
-    background: rgb(118, 171, 255);
+    background: $earlyColor;
   }
   &:hover {
     border: 2px solid #666;
     margin: 0;
     cursor: pointer;
   }
+}
+
+#startMonth {
+  margin-right: 5px;
 }
 
 .paymentPopover {

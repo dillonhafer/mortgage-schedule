@@ -2,7 +2,23 @@
   background-color: #222;
   text-align: center;
   padding: 20px;
-  color: white; }
+  color: white;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center; }
+  .App-header img {
+    height: 100px; }
+
+.attribution-link {
+  text-align: center;
+  font-size: 14px;
+  color: #CCC;
+  margin: 10px; }
+  .attribution-link a {
+    color: #CCC; }
 
 .App-intro {
   font-size: large;

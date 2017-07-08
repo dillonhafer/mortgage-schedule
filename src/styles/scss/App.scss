@@ -3,6 +3,30 @@
   text-align: center;
   padding: 20px;
   color: white;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+
+  img {
+    height: 100px;
+  }
+
+  h2 {
+  }
+}
+
+.attribution-link {
+  text-align: center;
+  font-size: 14px;
+  color: #CCC;
+  margin: 10px;
+
+  a {
+    color: #CCC;
+  }
 }
 
 .App-intro {
