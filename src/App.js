@@ -220,7 +220,7 @@ class App extends Component {
           </div>
         </div>
         <div className="attribution-link">
-          <a href="https://www.vexels.com/vectors/preview/135263/web-home-flat-sign"> Web home flat sign </a> | designed by Vexels
+          <a href="https://www.vexels.com/vectors/preview/135263/web-home-flat-sign">Web home flat sign</a> | designed by Vexels
         </div>
       </div>
     );
