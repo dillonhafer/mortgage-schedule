@@ -54,6 +54,15 @@
   }
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; }
+}
+
 .month:hover ~ .paymentPopover {
   display: block;
+  animation: fadeIn 0.75s;
 }

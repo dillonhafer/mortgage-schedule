@@ -1,55 +1,36 @@
 import React, { Component } from 'react';
 import './styles/css/App.css';
 import moment from 'moment';
-import parse from 'url-parse';
 import Month from './Month';
 import {numberToCurrency} from './Helpers';
+
+const MORTGAGE_SETTINGS = "mortgage_settings";
 
 class App extends Component {
   constructor(props) {
     super(props);
     const currentDate = new Date();
 
-    const url = parse(window.location, true);
-    const {
-      loanBalance,
-      startYear,
-      startMonth,
-      interestRate,
-      yearTerm,
-      currentBalance,
-    } = url.query;
-
-    let defaultState = {
-      loanBalance: 1,
+    const savedSettings = JSON.parse(localStorage.getItem(MORTGAGE_SETTINGS));
+    const defaultState = {
+      loanBalance: 100000,
       currentYear: currentDate.getFullYear(),
       startYear: currentDate.getFullYear(),
       startMonth: currentDate.getMonth()+1,
       interestRate: 2.5,
       yearTerm: 15,
-      currentBalance: 1,
+      currentBalance: 100000,
+      extraMonthlyPayment: 0,
     }
 
-    if (loanBalance !== undefined) {
-      defaultState.loanBalance = parseInt(loanBalance, 10);
+    this.state = {
+      ...defaultState,
+      ...savedSettings,
     }
-    if (startYear !== undefined) {
-      defaultState.startYear = parseInt(startYear, 10);
-    }
-    if (startMonth !== undefined) {
-      defaultState.startMonth = parseInt(startMonth, 10);
-    }
-    if (yearTerm !== undefined) {
-      defaultState.yearTerm = parseInt(yearTerm, 10);
-    }
-    if (interestRate !== undefined) {
-      defaultState.interestRate = parseFloat(interestRate).toFixed(1);
-    }
-    if (currentBalance !== undefined) {
-      defaultState.currentBalance = parseInt(currentBalance, 10);
-    }
+  }
 
-    this.state = defaultState;
+  saveState(state) {
+    localStorage.setItem(MORTGAGE_SETTINGS, JSON.stringify(state));
   }
 
   monthsSinceStart(year, month) {
@@ -59,40 +40,50 @@ class App extends Component {
     return Math.abs(startDate.diff(endDate, 'months', true).toFixed());
   }
 
+  setAndUpdateState = (state) => {
+    this.setState(state);
+    this.saveState({...this.state, ...state})
+  }
 
   handleLoanBalanceChange = (e) => {
     if (isNaN(parseInt(e.target.value, 10))) {
       return alert("Please only input numbers");
     }
-    this.setState({loanBalance: parseInt(e.target.value,10)});
+    this.setAndUpdateState({loanBalance: parseInt(e.target.value,10)});
   }
 
-  handleCurrentBalanceChange = (e) => { if (isNaN(parseInt(e.target.value, 10))) { return alert("Please only input numbers");
+  handleCurrentBalanceChange = (e) => {
+    if (isNaN(parseInt(e.target.value, 10))) {
+      return alert("Please only input numbers");
     }
-    this.setState({currentBalance: parseInt(e.target.value,10)});
+    this.setAndUpdateState({currentBalance: parseInt(e.target.value,10)});
   }
 
   handleInterestRateChange = (e) => {
-    this.setState({interestRate: parseFloat(e.target.value).toFixed(1)});
+    this.setAndUpdateState({interestRate: parseFloat(e.target.value).toFixed(1)});
   }
 
   handleYearChange = (e) => {
-    this.setState({startYear: parseInt(e.target.value,10)});
+    this.setAndUpdateState({startYear: parseInt(e.target.value,10)});
   }
 
   handleMonthChange = (e) => {
-    this.setState({startMonth: parseInt(e.target.value,10)});
+    this.setAndUpdateState({startMonth: parseInt(e.target.value,10)});
   }
 
   handleYearTermChange = (e) => {
-    this.setState({yearTerm: parseInt(e.target.value,10)});
+    this.setAndUpdateState({yearTerm: parseInt(e.target.value,10)});
+  }
+
+  handleExtraMonthlyPaymentChange = (e) => {
+    this.setAndUpdateState({extraMonthlyPayment: parseFloat(e.target.value)});
   }
 
   pmt(interest, payments, presentValue) {
     const exponent   = Math.pow(interest + 1.0, payments);
     const topLine    = interest * exponent;
     const bottomLine = exponent - 1.0;
-    return (presentValue * 1000) * (topLine / bottomLine);
+    return presentValue * (topLine / bottomLine);
   }
 
   render() {
@@ -104,6 +95,7 @@ class App extends Component {
       interestRate,
       yearTerm,
       currentBalance,
+      extraMonthlyPayment,
     } = this.state;
     const years = [...Array(yearTerm).keys()];
 
@@ -112,10 +104,10 @@ class App extends Component {
     const completedMonths = this.monthsSinceStart(startYear, startMonth);
     const totalMonths = 12 * yearTerm;
 
-    const firstMonthInterest = parseFloat(((currentBalance * interest) * 1000).toFixed(2));
+    const firstMonthInterest = parseFloat((currentBalance * interest).toFixed(2));
     const firstMonthPrincipal = monthlyPayment - firstMonthInterest;
 
-    let cv = currentBalance * 1000;
+    let cv = currentBalance;
     const _months = [...Array(totalMonths).keys()].map((month, i) => {
       const pastMonth = i < completedMonths;
       let _principal   = 0.00;
@@ -129,7 +121,7 @@ class App extends Component {
         cv = _balance
       } else if (i > completedMonths) {
          _interest = parseFloat((cv * interest).toFixed(2));
-        _principal = monthlyPayment - _interest;
+        _principal = monthlyPayment - _interest + extraMonthlyPayment;
           _balance = cv - _principal
         cv = _balance
       }
@@ -152,14 +144,17 @@ class App extends Component {
           <h2>Fixed Rate Mortgage Schedule</h2>
         </div>
         <div className="App-intro">
-          <label>Original Balance: <b>{numberToCurrency(loanBalance*1000)}</b></label>
-          <input className="range-input" type="range" min="1" max="500" value={loanBalance} onChange={this.handleLoanBalanceChange} />
+          <label>Original Balance: <b>{numberToCurrency(loanBalance)}</b></label>
+          <input type="number" pattern="[0-9]*" min="1000" max="500000" step="1000" value={loanBalance} onChange={this.handleLoanBalanceChange} />
 
-          <label>Current Balance: <b>{numberToCurrency(currentBalance * 1000)}</b></label>
-          <input className="range-input" type="range" min="1" max={loanBalance} value={currentBalance} onChange={this.handleCurrentBalanceChange} />
+          <label htmlFor="currentBalance">Current Balance: <b>{numberToCurrency(currentBalance)}</b></label>
+          <input id="currentBalance" type="number" pattern="[0-9]*" min="1000" max={loanBalance} step="1000" value={currentBalance} onChange={this.handleCurrentBalanceChange} />
 
           <label htmlFor="interestRate">Interest Rate: <b>{interestRate}%</b></label>
-          <input name="interestRate" className="range-input" type="range" min="0.10" max="30.00" value={interestRate} step="0.1" onChange={this.handleInterestRateChange} />
+          <input id="interestRate" type="number" pattern="[0-9]*" min="0.10" max="30.00" value={interestRate} step="0.1" onChange={this.handleInterestRateChange} />
+
+          <label htmlFor="extraMonthlyPayment">Extra Monthly Payment:</label>
+          <input id="extraMonthlyPayment" value={extraMonthlyPayment} min="1" type="number" onChange={this.handleExtraMonthlyPaymentChange} />
 
           <label>Origin Date:</label>
           <div>

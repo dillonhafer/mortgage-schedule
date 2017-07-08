@@ -6,13 +6,13 @@
     "date-input-polyfill": "^2.14.0",
     "moment": "^2.18.1",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "url-parse": "^1.1.9"
+    "react-dom": "^15.6.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.7",
     "node-sass": "^4.5.3"
   },
+  "homepage": "https://files.dillonhafer.com/am",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
