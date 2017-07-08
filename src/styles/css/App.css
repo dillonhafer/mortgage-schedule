@@ -1,0 +1,135 @@
+.App-header {
+  background-color: #222;
+  text-align: center;
+  padding: 20px;
+  color: white; }
+
+.App-intro {
+  font-size: large;
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 10px; }
+
+.monthContainer {
+  display: inline-block; }
+
+.remainingLabel {
+  text-align: center;
+  font-size: 16px;
+  color: #666; }
+
+.monthChart {
+  border: 1px solid #CCC;
+  padding: 4px; }
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold; }
+
+select {
+  height: 2.4375rem;
+  margin: 0 0 1rem;
+  padding: 0.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #cacaca;
+  border-radius: 5px;
+  background-color: #fefefe;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.5;
+  color: #0a0a0a;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='32' height='24' viewBox='0 0 32 24'><polygon points='0,0 32,0 16,24' style='fill: rgb%28138, 138, 138%29'></polygon></svg>");
+  -webkit-background-origin: content-box;
+  background-origin: content-box;
+  background-position: right -1rem center;
+  background-repeat: no-repeat;
+  -webkit-background-size: 9px 6px;
+  background-size: 9px 6px;
+  padding-right: 1.5rem;
+  -webkit-transition: border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s;
+  transition: border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s;
+  transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
+  transition: box-shadow 0.5s, border-color 0.25s ease-in-out, -webkit-box-shadow 0.5s; }
+
+.monthSelect, .yearSelect {
+  padding-left: 10px; }
+
+input[type=range].range-input {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 8.4px 0; }
+  input[type=range].range-input:focus {
+    outline: none; }
+  input[type=range].range-input::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8.2px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
+    background: rgba(180, 180, 180, 0.55);
+    border-radius: 25px;
+    border: 0px solid #010101; }
+  input[type=range].range-input::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
+    border: 1px solid rgba(10, 130, 189, 0);
+    height: 25px;
+    width: 25px;
+    border-radius: 24px;
+    background: #0c99de;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -8.4px; }
+  input[type=range].range-input:focus::-webkit-slider-runnable-track {
+    background: rgba(180, 180, 180, 0.55); }
+  input[type=range].range-input::-moz-range-track {
+    width: 100%;
+    height: 8.2px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
+    background: rgba(180, 180, 180, 0.55);
+    border-radius: 25px;
+    border: 0px solid #010101; }
+  input[type=range].range-input::-moz-range-thumb {
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
+    border: 1px solid rgba(10, 130, 189, 0);
+    height: 25px;
+    width: 25px;
+    border-radius: 24px;
+    background: #0c99de;
+    cursor: pointer; }
+  input[type=range].range-input::-ms-track {
+    width: 100%;
+    height: 8.2px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent; }
+  input[type=range].range-input::-ms-fill-lower {
+    background: rgba(180, 180, 180, 0.55);
+    border: 0px solid #010101;
+    border-radius: 50px;
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0); }
+  input[type=range].range-input::-ms-fill-upper {
+    background: rgba(180, 180, 180, 0.55);
+    border: 0px solid #010101;
+    border-radius: 50px;
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0); }
+  input[type=range].range-input::-ms-thumb {
+    box-shadow: 0px 0px 0px transparent, 0px 0px 0px rgba(13, 13, 13, 0);
+    border: 1px solid rgba(10, 130, 189, 0);
+    height: 25px;
+    width: 25px;
+    border-radius: 24px;
+    background: #0c99de;
+    cursor: pointer;
+    height: 8.2px; }
+  input[type=range].range-input:focus::-ms-fill-lower {
+    background: rgba(180, 180, 180, 0.55); }
+  input[type=range].range-input:focus::-ms-fill-upper {
+    background: rgba(180, 180, 180, 0.55); }
+
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,59 @@
+.month {
+  width: 10px;
+  height: 10px;
+  margin: 2px;
+  background: #CCC;
+
+  &.past {
+    background: rgb(104, 212, 83);
+  }
+  &.early {
+    background: rgb(118, 171, 255);
+  }
+  &:hover {
+    border: 2px solid #666;
+    margin: 0;
+    cursor: pointer;
+  }
+}
+
+.paymentPopover {
+  display:none;
+  position: absolute;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-top: 10px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    border: 1px solid transparent;
+    border-width: 25px 25px 0;
+    border: solid transparent;
+    border-bottom-color: rgba(0,0,0,0.7);
+    display: block;
+    width: 0;
+    z-index: 1;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    border: 1px solid transparent;
+    border-width: 26px 26px 0;
+    border: solid transparent;
+    border-bottom-color: rgba(0,0,0,0.7);
+    display: block;
+    width: 0;
+    z-index: 0;
+  }
+}
+
+.month:hover ~ .paymentPopover {
+  display: block;
+}

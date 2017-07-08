@@ -1,0 +1,51 @@
+.month {
+  width: 10px;
+  height: 10px;
+  margin: 2px;
+  background: #CCC; }
+  .month.past {
+    background: #68d453; }
+  .month.early {
+    background: #76abff; }
+  .month:hover {
+    border: 2px solid #666;
+    margin: 0;
+    cursor: pointer; }
+
+.paymentPopover {
+  display: none;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 8px;
+  border-radius: 5px;
+  margin-top: 10px; }
+  .paymentPopover:after {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    border: 1px solid transparent;
+    border-width: 25px 25px 0;
+    border: solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.7);
+    display: block;
+    width: 0;
+    z-index: 1; }
+  .paymentPopover:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    border: 1px solid transparent;
+    border-width: 26px 26px 0;
+    border: solid transparent;
+    border-bottom-color: rgba(0, 0, 0, 0.7);
+    display: block;
+    width: 0;
+    z-index: 0; }
+
+.month:hover ~ .paymentPopover {
+  display: block; }
+
+/*# sourceMappingURL=Month.css.map */
