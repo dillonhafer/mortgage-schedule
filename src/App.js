@@ -184,7 +184,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} alt="logo" />
-          <h2>Fixed Rate Mortgage Schedule</h2>
+          <h2>Mortgage Schedule</h2>
         </div>
         <div className="App-intro">
           <div className="formRow">
