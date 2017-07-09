@@ -15,6 +15,11 @@
 #startMonth {
   margin-right: 5px; }
 
+.monthChart {
+  border: 1px solid #CCC;
+  padding: 4px;
+  border-radius: 3px; }
+
 .paymentPopover {
   display: none;
   position: absolute;
@@ -58,5 +63,37 @@
 .month.focus ~ .paymentPopover {
   display: block;
   animation: fadeIn 0.75s; }
+
+.chartTypeSegment label {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  padding-bottom: 7px;
+  cursor: pointer;
+  color: #333; }
+  .chartTypeSegment label span {
+    font-size: 14px;
+    font-weight: normal; }
+  .chartTypeSegment label.first {
+    border-right: none;
+    border-radius: 3px 0 0 3px; }
+  .chartTypeSegment label.last {
+    border-radius: 0 3px 3px 0; }
+.chartTypeSegment input[type=radio]:checked + label {
+  background: #ddd; }
+.chartTypeSegment input[type=radio] {
+  display: none; }
+
+table.scheduleChart {
+  width: 100%;
+  border-collapse: collapse; }
+  table.scheduleChart th {
+    background: #666;
+    color: white; }
+  table.scheduleChart td {
+    border: 1px solid #CCC;
+    text-align: right;
+    padding: 5px; }
+  table.scheduleChart td:first-child {
+    text-align: center; }
 
 /*# sourceMappingURL=Month.css.map */

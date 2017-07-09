@@ -239,7 +239,7 @@ class App extends Component {
 
             <div className="extraPayments">
               <span className="sectionHeader">Extra Payments</span>
-              <label htmlFor="extraMonthlyPayment">Extra Monthly Payment</label>
+              <label htmlFor="extraMonthlyPayment">Monthly</label>
               <input id="extraMonthlyPayment" value={extraMonthlyPayment} min="1" type="number" onChange={this.handleExtraMonthlyPaymentChange} />
             </div>
           </div>

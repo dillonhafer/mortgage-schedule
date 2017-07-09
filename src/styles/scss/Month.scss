@@ -23,6 +23,12 @@ $earlyColor: #76abff;
   margin-right: 5px;
 }
 
+.monthChart {
+  border: 1px solid #CCC;
+  padding: 4px;
+  border-radius: 3px;
+}
+
 .paymentPopover {
   display:none;
   position: absolute;
@@ -72,4 +78,55 @@ $earlyColor: #76abff;
 .month.focus ~ .paymentPopover {
   display: block;
   animation: fadeIn 0.75s;
+}
+
+.chartTypeSegment {
+  label {
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    padding-bottom: 7px;
+    cursor: pointer;
+    color: #333;
+
+    span {
+      font-size: 14px;
+      font-weight: normal;
+    }
+
+    &.first {
+      border-right: none;
+      border-radius: 3px 0 0 3px;
+    }
+    &.last {
+      border-radius: 0 3px 3px 0;
+    }
+  }
+
+  input[type=radio]:checked+label {
+    background: #ddd;
+  }
+
+  input[type=radio] {
+    display: none;
+  }
+}
+
+table.scheduleChart {
+  width: 100%;
+  border-collapse: collapse;
+
+  th {
+    background: #666;
+    color: white;
+  }
+
+  td {
+    border: 1px solid #CCC;
+    text-align: right;
+    padding: 5px;
+  }
+
+  td:first-child {
+    text-align: center;
+  }
 }
