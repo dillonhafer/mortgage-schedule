@@ -122,7 +122,7 @@ class App extends Component {
   }
 
   pmt(interest, payments, presentValue) {
-    const exponent   = Math.pow(interest + 1.0, payments);
+    const exponent   = (interest + 1.0) ** payments;
     const topLine    = interest * exponent;
     const bottomLine = exponent - 1.0;
     return presentValue * (topLine / bottomLine);
