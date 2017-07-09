@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import {numberToCurrency} from './Helpers';
 
 class MonthListItem extends Component {
@@ -9,14 +8,10 @@ class MonthListItem extends Component {
       month,
     } = this.props;
 
-    let style = {}
-    if (date.format("MMMM") === "January") {
-      style.background = "#76abff";
-      style.color = "white";
-    }
+    const classNames = date.format("MMMM") === "January" ? "newYear" : "";
 
     return (
-      <tr style={style}>
+      <tr className={classNames}>
         <td>{date.format("MMMM YYYY")}</td>
         <td>{numberToCurrency(month.principal)}</td>
         <td>{numberToCurrency(month.interest)}</td>

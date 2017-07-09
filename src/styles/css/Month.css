@@ -17,7 +17,7 @@
 
 .monthChart {
   border: 1px solid #CCC;
-  padding: 4px;
+  padding: 15px;
   border-radius: 3px; }
 
 .paymentPopover {
@@ -70,6 +70,8 @@
   padding-bottom: 7px;
   cursor: pointer;
   color: #333; }
+  .chartTypeSegment label:hover {
+    background: #f7f7f7; }
   .chartTypeSegment label span {
     font-size: 14px;
     font-weight: normal; }
@@ -88,12 +90,28 @@ table.scheduleChart {
   border-collapse: collapse; }
   table.scheduleChart th {
     background: #666;
-    color: white; }
+    border: 1px solid #666;
+    padding: 8px;
+    color: white;
+    border-bottom-color: #333; }
   table.scheduleChart td {
     border: 1px solid #CCC;
     text-align: right;
+    color: #333;
     padding: 5px; }
   table.scheduleChart td:first-child {
     text-align: center; }
+  table.scheduleChart tr:nth-child(even) td {
+    background-color: #EDEDED; }
+  table.scheduleChart tr.newYear {
+    border-left: 1px solid #76abff;
+    border-right: 1px solid #76abff; }
+    table.scheduleChart tr.newYear td {
+      background: #76abff;
+      color: white; }
+    table.scheduleChart tr.newYear td:first-child {
+      border-left-color: #76abff; }
+    table.scheduleChart tr.newYear td:last-child {
+      border-right-color: #76abff; }
 
 /*# sourceMappingURL=Month.css.map */

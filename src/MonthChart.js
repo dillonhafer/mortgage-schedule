@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {numberToCurrency} from './Helpers';
 import Month from './Month';
 import MonthListItem from './MonthListItem';
 import moment from 'moment';

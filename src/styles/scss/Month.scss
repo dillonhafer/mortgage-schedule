@@ -25,7 +25,7 @@ $earlyColor: #76abff;
 
 .monthChart {
   border: 1px solid #CCC;
-  padding: 4px;
+  padding: 15px;
   border-radius: 3px;
 }
 
@@ -88,6 +88,10 @@ $earlyColor: #76abff;
     cursor: pointer;
     color: #333;
 
+    &:hover {
+      background: lighten(#ddd,10%);
+    }
+
     span {
       font-size: 14px;
       font-weight: normal;
@@ -111,22 +115,51 @@ $earlyColor: #76abff;
   }
 }
 
+$thColor: #666;
+
 table.scheduleChart {
   width: 100%;
   border-collapse: collapse;
 
   th {
-    background: #666;
+    background: $thColor;
+    border: 1px solid $thColor;
+    padding: 8px;
     color: white;
+    border-bottom-color: #333;
   }
 
   td {
     border: 1px solid #CCC;
     text-align: right;
+    color: #333;
     padding: 5px;
   }
 
   td:first-child {
     text-align: center;
+  }
+
+  tr:nth-child(even) {
+    td {
+      background-color: #EDEDED;
+    }
+  }
+
+  tr.newYear {
+    border-left: 1px solid $earlyColor;
+    border-right: 1px solid $earlyColor;
+
+    td {
+      background: $earlyColor;
+      color: white;
+    }
+
+    td:first-child {
+      border-left-color: $earlyColor;
+    }
+    td:last-child {
+      border-right-color: $earlyColor;
+    }
   }
 }
