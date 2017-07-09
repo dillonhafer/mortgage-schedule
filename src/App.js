@@ -157,7 +157,7 @@ class App extends Component {
       let _balance     = cv
 
       if (i === completedMonths) {
-        _principal = firstMonthPrincipal
+        _principal = firstMonthPrincipal + extraMonthlyPayment;
          _interest = firstMonthInterest
         _balance = cv - _principal
         cv = _balance
