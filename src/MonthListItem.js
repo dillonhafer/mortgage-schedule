@@ -13,6 +13,7 @@ class MonthListItem extends Component {
     return (
       <tr className={classNames}>
         <td>{date.format("MMMM YYYY")}</td>
+        <td>{numberToCurrency(month.principal+month.interest)}</td>
         <td>{numberToCurrency(month.principal)}</td>
         <td>{numberToCurrency(month.interest)}</td>
         <td>{numberToCurrency(month.balance)}</td>

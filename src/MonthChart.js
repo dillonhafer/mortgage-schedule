@@ -41,6 +41,7 @@ class MonthChart extends Component {
         <thead>
           <tr>
             <th>Date</th>
+            <th>Payment</th>
             <th>Principal</th>
             <th>Interest</th>
             <th>Balance</th>
