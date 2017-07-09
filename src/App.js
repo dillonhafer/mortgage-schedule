@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles/css/App.css';
 import moment from 'moment';
 import Month from './Month';
+import MonthChart from './MonthChart';
 import {numberToCurrency} from './Helpers';
 import logo from './home.svg';
 
@@ -161,47 +162,54 @@ class App extends Component {
           <h2>Fixed Rate Mortgage Schedule</h2>
         </div>
         <div className="App-intro">
-          <label htmlFor="originalBalance">Original Balance: <b>{numberToCurrency(loanBalance)}</b></label>
-          <input id="originalBalance" type="number" pattern="[0-9]*" min="1000" max="500000" step="1000" value={loanBalance} onChange={this.handleLoanBalanceChange} />
+          <div className="formRow">
+            <div className="loanDetails">
+              <label htmlFor="originalBalance">Original Balance: <b>{numberToCurrency(loanBalance)}</b></label>
+              <input id="originalBalance" type="number" pattern="[0-9]*" min="1000" max="500000" step="1000" value={loanBalance} onChange={this.handleLoanBalanceChange} />
 
-          <label htmlFor="currentBalance">Current Balance: <b>{numberToCurrency(currentBalance)}</b></label>
-          <input id="currentBalance" type="number" pattern="[0-9]*" min="1000" max={loanBalance} step="1000" value={currentBalance} onChange={this.handleCurrentBalanceChange} />
+              <label htmlFor="currentBalance">Current Balance: <b>{numberToCurrency(currentBalance)}</b></label>
+              <input id="currentBalance" type="number" pattern="[0-9]*" min="1000" max={loanBalance} step="1000" value={currentBalance} onChange={this.handleCurrentBalanceChange} />
 
-          <label htmlFor="interestRate">Interest Rate: <b>{interestRate}%</b></label>
-          <input id="interestRate" type="number" pattern="[0-9]*" min="0.10" max="30.00" value={interestRate} step="0.1" onChange={this.handleInterestRateChange} />
+              <label htmlFor="interestRate">Interest Rate: <b>{interestRate}%</b></label>
+              <input id="interestRate" type="number" pattern="[0-9]*" min="0.10" max="30.00" value={interestRate} step="0.1" onChange={this.handleInterestRateChange} />
 
-          <label htmlFor="extraMonthlyPayment">Extra Monthly Payment:</label>
-          <input id="extraMonthlyPayment" value={extraMonthlyPayment} min="1" type="number" onChange={this.handleExtraMonthlyPaymentChange} />
 
-          <label htmlFor="startMonth">Origin Date:</label>
-          <div>
-            <select id="startMonth" onChange={this.handleMonthChange} value={startMonth}>
-              {
-                moment.months().map((m, i) => {
-                  return <option value={i+1} key={i}>{m}</option>;
-                })
-              }
-            </select>
-            <select onChange={this.handleYearChange} value={startYear}>
-              {
-                years.map((y) => {
-                  const year = currentYear - y;
-                  return <option key={y} value={year}>{year}</option>;
-                })
-              }
-            </select>
-          </div>
+              <label htmlFor="startMonth">Origin Date:</label>
+              <div>
+                <select id="startMonth" onChange={this.handleMonthChange} value={startMonth}>
+                  {
+                    moment.months().map((m, i) => {
+                      return <option value={i+1} key={i}>{m}</option>;
+                    })
+                  }
+                </select>
+                <select onChange={this.handleYearChange} value={startYear}>
+                  {
+                    years.map((y) => {
+                      const year = currentYear - y;
+                      return <option key={y} value={year}>{year}</option>;
+                    })
+                  }
+                </select>
+              </div>
 
-          <label htmlFor="yearTerm">Loan Term:</label>
-          <div>
-            <select id="yearTerm" onChange={this.handleYearTermChange} value={yearTerm}>
-              {
-                [...Array(30).keys()].map((y) => {
-                  const year = y + 1;
-                  return <option key={y} value={year}>{year} {year === 1 ? "year" : "years"}</option>;
-                })
-              }
-            </select>
+              <label htmlFor="yearTerm">Loan Term:</label>
+              <div>
+                <select id="yearTerm" onChange={this.handleYearTermChange} value={yearTerm}>
+                  {
+                    [...Array(30).keys()].map((y) => {
+                      const year = y + 1;
+                      return <option key={y} value={year}>{year} {year === 1 ? "year" : "years"}</option>;
+                    })
+                  }
+                </select>
+              </div>
+            </div>
+
+            <div className="extraPayments">
+              <label htmlFor="extraMonthlyPayment">Extra Monthly Payment:</label>
+              <input id="extraMonthlyPayment" value={extraMonthlyPayment} min="1" type="number" onChange={this.handleExtraMonthlyPaymentChange} />
+            </div>
           </div>
 
           <p className='remainingLabel'>
@@ -210,14 +218,7 @@ class App extends Component {
           <p className='remainingLabel'>
             Monthly Payment: <b>{numberToCurrency(monthlyPayment)}</b>
           </p>
-          <div className='monthChart'>
-            {
-              _months.map((month,i) => {
-                const date = moment([startYear, startMonth, 1]).add(i, 'M')
-                return <Month key={i} month={month} date={date} />
-              })
-            }
-          </div>
+          <MonthChart months={_months} startYear={startYear} startMonth={startMonth} />
         </div>
         <div className="attribution-link">
           <a href="https://www.vexels.com/vectors/preview/135263/web-home-flat-sign">Web home flat sign</a> | designed by Vexels

@@ -208,3 +208,36 @@ input[type=range].range-input {
     background: rgba(180, 180, 180, 0.55);
   }
 }
+
+.formRow {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.loanDetails {
+  width: 48%;
+  margin-right: 1%;
+}
+
+.extraPayments {
+  width: 48%;
+  margin-left: 1%;
+}
+
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 568px) {
+  .formRow {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .loanDetails, .extraPayments {
+    width: 100%;
+    margin-right: 0%;
+  }
+}
