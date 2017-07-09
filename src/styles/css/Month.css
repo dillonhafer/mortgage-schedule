@@ -85,6 +85,10 @@
 .chartTypeSegment input[type=radio] {
   display: none; }
 
+.monthChart {
+  max-width: 100%;
+  overflow: scroll; }
+
 table.scheduleChart {
   width: 100%;
   border-collapse: collapse; }

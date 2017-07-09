@@ -117,6 +117,10 @@ $earlyColor: #76abff;
 
 $thColor: #666;
 
+.monthChart {
+  max-width: 100%;
+  overflow: scroll;
+}
 table.scheduleChart {
   width: 100%;
   border-collapse: collapse;
