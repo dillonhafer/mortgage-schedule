@@ -1,7 +1,7 @@
 .App-header {
   background-color: #222;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
   color: white;
   display: -webkit-flex;
   display: flex;
@@ -12,9 +12,6 @@
 
   img {
     height: 100px;
-  }
-
-  h2 {
   }
 }
 
@@ -209,6 +206,16 @@ input[type=range].range-input {
   }
 }
 
+.interestRateRow {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: row;
+
+  & > div:first-child {
+    margin-right: 10px;
+  }
+}
+
 .formRow {
   display: -webkit-flex;
   display: flex;
@@ -226,6 +233,15 @@ input[type=range].range-input {
   margin-left: 1%;
 }
 
+.sectionHeader {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  color: gray;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
 @media only screen
 and (min-device-width : 320px)
 and (max-device-width : 568px) {
@@ -239,5 +255,19 @@ and (max-device-width : 568px) {
   .loanDetails, .extraPayments {
     width: 100%;
     margin-right: 0%;
+  }
+
+  .App-header {
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+
+    img {
+      height: 50px;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin-left: 10px;
+    }
   }
 }

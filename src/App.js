@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './styles/css/App.css';
 import moment from 'moment';
-import Month from './Month';
 import MonthChart from './MonthChart';
 import {numberToCurrency} from './Helpers';
 import logo from './home.svg';
@@ -77,7 +76,33 @@ class App extends Component {
   }
 
   handleInterestRateChange = (e) => {
-    this.setAndUpdateState({interestRate: parseFloat(e.target.value).toFixed(1)});
+    if (e.target.value === "") {
+      e.target.value = ""
+    }
+    const value = e.target.value.replace(/\D/, '');
+    let interestRate = 0.00;
+    console.log(value);
+
+    switch (value.length) {
+      case 0:
+        interestRate = '';
+        break;
+      case 1:
+        interestRate = `${value}`;
+        break;
+      case 2:
+        interestRate = `${value}`;
+        break;
+      case 3:
+        interestRate = `${value[0]}.${value[1]}${value[2]}`;
+        break;
+      default:
+        return
+    }
+    if (value.length < 4) {
+      console.log("fin", e.target.value, value, value.length)
+      this.setAndUpdateState({interestRate});
+    }
   }
 
   handleYearChange = (e) => {
@@ -164,17 +189,34 @@ class App extends Component {
         <div className="App-intro">
           <div className="formRow">
             <div className="loanDetails">
+              <span className="sectionHeader">Loan Details</span>
               <label htmlFor="originalBalance">Original Balance: <b>{numberToCurrency(loanBalance)}</b></label>
               <input id="originalBalance" type="number" pattern="[0-9]*" min="1000" max="500000" step="1000" value={loanBalance} onChange={this.handleLoanBalanceChange} />
 
               <label htmlFor="currentBalance">Current Balance: <b>{numberToCurrency(currentBalance)}</b></label>
               <input id="currentBalance" type="number" pattern="[0-9]*" min="1000" max={loanBalance} step="1000" value={currentBalance} onChange={this.handleCurrentBalanceChange} />
 
-              <label htmlFor="interestRate">Interest Rate: <b>{interestRate}%</b></label>
-              <input id="interestRate" type="number" pattern="[0-9]*" min="0.10" max="30.00" value={interestRate} step="0.1" onChange={this.handleInterestRateChange} />
+              <div className="interestRateRow">
+                <div>
+                  <label htmlFor="interestRate">Interest Rate</label>
+                  <input id="interestRate" placeholder="(3.50)" type="number" pattern="[0-9]*" min="0.10" max="30.00" value={interestRate} step="0.1" onChange={this.handleInterestRateChange} />
+                </div>
+
+                <div>
+                  <label htmlFor="yearTerm">Loan Term</label>
+                  <select id="yearTerm" onChange={this.handleYearTermChange} value={yearTerm}>
+                    {
+                      [...Array(30).keys()].map((y) => {
+                        const year = y + 1;
+                        return <option key={y} value={year}>{year} {year === 1 ? "year" : "years"}</option>;
+                      })
+                    }
+                  </select>
+                </div>
+              </div>
 
 
-              <label htmlFor="startMonth">Origin Date:</label>
+              <label htmlFor="startMonth">Origin Date</label>
               <div>
                 <select id="startMonth" onChange={this.handleMonthChange} value={startMonth}>
                   {
@@ -193,21 +235,11 @@ class App extends Component {
                 </select>
               </div>
 
-              <label htmlFor="yearTerm">Loan Term:</label>
-              <div>
-                <select id="yearTerm" onChange={this.handleYearTermChange} value={yearTerm}>
-                  {
-                    [...Array(30).keys()].map((y) => {
-                      const year = y + 1;
-                      return <option key={y} value={year}>{year} {year === 1 ? "year" : "years"}</option>;
-                    })
-                  }
-                </select>
-              </div>
             </div>
 
             <div className="extraPayments">
-              <label htmlFor="extraMonthlyPayment">Extra Monthly Payment:</label>
+              <span className="sectionHeader">Extra Payments</span>
+              <label htmlFor="extraMonthlyPayment">Extra Monthly Payment</label>
               <input id="extraMonthlyPayment" value={extraMonthlyPayment} min="1" type="number" onChange={this.handleExtraMonthlyPaymentChange} />
             </div>
           </div>
