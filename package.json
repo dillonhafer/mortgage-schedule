@@ -5,6 +5,7 @@
   "dependencies": {
     "date-input-polyfill": "^2.14.0",
     "moment": "^2.18.1",
+    "npm-run-all": "^4.0.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-icons": "^2.2.5"
@@ -14,13 +15,15 @@
     "react-scripts": "1.0.7"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "yarn run build-css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "all": "./server.scpt",
     "watch-css": "sass --watch src/styles/scss:src/styles/css",
     "build-css": "sass src/styles/scss:src/styles/css",
-    "deploy": "yarn build && yarn run build-css && rsync -avzP build/ yoda:mortgage/ && rm -rf build"
+    "start-js": "react-scripts start",
+    "rsync": "rsync -avzP build/ yoda:mortgage",
+    "clean": "rm -rf build",
+    "deploy": "npm-run-all -p build rsync clean"
   }
 }
