@@ -20,10 +20,10 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "watch-css": "sass --watch src/styles/scss:src/styles/css",
-    "build-css": "sass src/styles/scss:src/styles/css",
+    "build-css": "sass --update src/styles/scss:src/styles/css",
     "start-js": "react-scripts start",
     "rsync": "rsync -avzP build/ yoda:mortgage",
     "clean": "rm -rf build",
-    "deploy": "npm-run-all -p build rsync clean"
+    "deploy": "yarn run build && yarn run rsync && yarn run clean"
   }
 }
