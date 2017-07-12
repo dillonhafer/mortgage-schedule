@@ -19,7 +19,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "all": "./server.scpt",
-    "sass": "sass --watch src/styles/scss:src/styles/css",
-    "deploy": "yarn build && rsync -avzP build/ yoda:mortgage/ && rm -rf build"
+    "watch-css": "sass --watch src/styles/scss:src/styles/css",
+    "build-css": "sass src/styles/scss:src/styles/css",
+    "deploy": "yarn build && yarn run build-css && rsync -avzP build/ yoda:mortgage/ && rm -rf build"
   }
 }
