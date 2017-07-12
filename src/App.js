@@ -4,6 +4,10 @@ import moment from 'moment';
 import MonthChart from './MonthChart';
 import {numberToCurrency} from './Helpers';
 import logo from './home.svg';
+import {
+  GoMarkGithub,
+  GoLogoGithub,
+} from 'react-icons/lib/go';
 
 const MORTGAGE_SETTINGS = "mortgage_settings";
 
@@ -253,7 +257,10 @@ class App extends Component {
           <MonthChart months={_months} startYear={startYear} startMonth={startMonth} />
         </div>
         <div className="attribution-link">
-          <a href="https://www.vexels.com/vectors/preview/135263/web-home-flat-sign">Web home flat sign</a> | designed by Vexels
+          <a href="https://github.com/dillonhafer/mortgage-schedule" rel="noopener noreferrer" target="_blank">
+            <GoMarkGithub />
+            <GoLogoGithub />
+          </a>
         </div>
       </div>
     );

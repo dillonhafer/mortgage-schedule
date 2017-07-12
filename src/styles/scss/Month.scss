@@ -5,12 +5,16 @@ $earlyColor: #76abff;
   height: 15px;
   margin: 2px;
   background: #CCC;
+  transition: border-color 0.25s ease-in-out;
 
   &.past {
     background: rgb(104, 212, 83);
   }
   &.early {
     background: $earlyColor;
+  }
+  &.year {
+    background: darken(#CCC,30%);
   }
   &:hover,&.focus {
     border: 2px solid #666;
@@ -78,6 +82,7 @@ $earlyColor: #76abff;
 .month.focus ~ .paymentPopover {
   display: block;
   animation: fadeIn 0.75s;
+  transition: all 0.25s ease-in-out;
 }
 
 .chartTypeSegment {
@@ -87,6 +92,7 @@ $earlyColor: #76abff;
     padding-bottom: 7px;
     cursor: pointer;
     color: #333;
+    transition: all 0.25s ease-in-out;
 
     &:hover {
       background: lighten(#ddd,10%);

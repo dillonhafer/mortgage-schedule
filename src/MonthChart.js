@@ -3,9 +3,9 @@ import Month from './Month';
 import MonthListItem from './MonthListItem';
 import moment from 'moment';
 import {
-  MdViewComfortable,
-  MdViewList,
-} from 'react-icons/lib/md';
+  GoListOrdered,
+  GoCalendar,
+} from 'react-icons/lib/go';
 
 class MonthChart extends Component {
   constructor(props) {
@@ -79,14 +79,14 @@ class MonthChart extends Component {
                  value="grid"
                  checked={chartType === "grid"}
                  onChange={this.handleChartTypeChange} />
-          <label className="first" htmlFor="gridRadio"><MdViewComfortable /> <span>Grid</span></label>
+          <label className="first" htmlFor="gridRadio"><GoCalendar /> <span>Grid</span></label>
 
           <input id="listRadio"
                  type="radio"
                  value="list"
                  checked={chartType === "list"}
                  onChange={this.handleChartTypeChange} />
-          <label htmlFor="listRadio" className="last"><MdViewList /> <span>List</span></label>
+          <label htmlFor="listRadio" className="last"><GoListOrdered /> <span>List</span></label>
         </div>
         <div className='monthChart'>
           {renderChart(months, startYear, startMonth)}

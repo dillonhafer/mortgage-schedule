@@ -17,12 +17,21 @@
 
 .attribution-link {
   text-align: center;
-  font-size: 14px;
   color: #CCC;
   margin: 10px;
 
   a {
+    transition: all 0.35s ease-in-out;
+
     color: #CCC;
+    font-size: 36px;
+    &:hover {
+      color: darken(#CCC,25%);
+    }
+
+    svg {
+      margin-right: 10px;
+    }
   }
 }
 
