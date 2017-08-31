@@ -6,44 +6,7 @@ import { numberToCurrency } from './Helpers';
 import logo from './home.svg';
 import { GoMarkGithub, GoLogoGithub } from 'react-icons/lib/go';
 
-const MORTGAGE_SETTINGS = 'mortgage_settings';
-
-function getSettings() {
-  const settings = localStorage.getItem(MORTGAGE_SETTINGS);
-  if (settings === null) {
-    return {};
-  }
-
-  return JSON.parse(window.atob(settings));
-}
-
-function saveSettings(json) {
-  localStorage.setItem(MORTGAGE_SETTINGS, window.btoa(JSON.stringify(json)));
-}
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-    const currentDate = new Date();
-
-    const savedSettings = getSettings();
-    const defaultState = {
-      loanBalance: 100000,
-      currentYear: currentDate.getFullYear(),
-      startYear: currentDate.getFullYear(),
-      startMonth: currentDate.getMonth() + 1,
-      interestRate: 2.5,
-      yearTerm: 15,
-      currentBalance: 100000,
-      extraMonthlyPayment: 0,
-    };
-
-    this.state = {
-      ...defaultState,
-      ...savedSettings,
-    };
-  }
-
   monthsSinceStart(year, month) {
     const today = new Date();
     const startDate = moment([year, month, 1]);
@@ -56,8 +19,7 @@ class App extends Component {
   }
 
   setAndUpdateState = state => {
-    this.setState(state);
-    saveSettings({ ...this.state, ...state });
+    this.props.updateState(state);
   };
 
   handleLoanBalanceChange = e => {
@@ -138,7 +100,7 @@ class App extends Component {
       yearTerm,
       currentBalance,
       extraMonthlyPayment,
-    } = this.state;
+    } = this.props;
     const years = [...Array(yearTerm).keys()];
 
     const interest = interestRate / 100.0 / 12;
@@ -194,7 +156,7 @@ class App extends Component {
         </div>
         <div className="App-intro">
           <div className="formRow">
-            <div className="loanDetails">
+            {' '}<div className="loanDetails">
               <span className="sectionHeader">Loan Details</span>
               <label htmlFor="originalBalance">
                 Original Balance: <b>{numberToCurrency(loanBalance)}</b>
@@ -286,7 +248,6 @@ class App extends Component {
                 </select>
               </div>
             </div>
-
             <div className="extraPayments">
               <span className="sectionHeader">Extra Payments</span>
               <label htmlFor="extraMonthlyPayment">Monthly</label>

@@ -4,11 +4,15 @@
   "private": true,
   "dependencies": {
     "date-input-polyfill": "^2.14.0",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "npm-run-all": "^4.0.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-icons": "^2.2.5"
+    "react-icons": "^2.2.5",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-devtools": "^3.4.0"
   },
   "devDependencies": {
     "node-sass": "^4.5.3",

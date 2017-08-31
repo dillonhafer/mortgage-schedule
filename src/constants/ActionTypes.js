@@ -1,0 +1,2 @@
+export const APP_STATE_CHANGED = 'APP_STATE_CHANGED';
+export const APP_UPDATED = 'APP_UPDATED';
