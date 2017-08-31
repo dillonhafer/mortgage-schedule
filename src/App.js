@@ -3,8 +3,6 @@ import './styles/css/App.css';
 import moment from 'moment';
 import MonthChart from './MonthChart';
 import { numberToCurrency } from './Helpers';
-import logo from './home.svg';
-import { GoMarkGithub, GoLogoGithub } from 'react-icons/lib/go';
 
 class App extends Component {
   monthsSinceStart(year, month) {
@@ -150,10 +148,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} alt="logo" />
-          <h2>Mortgage Schedule</h2>
-        </div>
         <div className="App-intro">
           <div className="formRow">
             {' '}<div className="loanDetails">
@@ -277,16 +271,6 @@ class App extends Component {
             startYear={startYear}
             startMonth={startMonth}
           />
-        </div>
-        <div className="attribution-link">
-          <a
-            href="https://github.com/dillonhafer/mortgage-schedule"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <GoMarkGithub />
-            <GoLogoGithub />
-          </a>
         </div>
       </div>
     );
