@@ -256,9 +256,11 @@ class App extends Component {
           </div>
 
           <p className="remainingLabel">
+            {totalMonths} month mortgage<br />
             Completed{' '}
             <b>
-              ({completedMonths} / {totalMonths})
+              ({completedMonths} /{' '}
+              {totalMonths - completedMonths - earlyMonths + completedMonths})
             </b>{' '}
             months. <b>{totalMonths - completedMonths - earlyMonths}</b> months
             remain.
